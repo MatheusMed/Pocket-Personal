@@ -2,26 +2,14 @@ import 'dart:convert';
 
 class UserModel {
   final String? nome;
-  final double? peso;
-  final double? altura;
+  final String? peso;
+  final String? altura;
 
-  UserModel(
+  UserModel({
     this.nome,
     this.peso,
     this.altura,
-  );
-
-  UserModel copyWith({
-    String? nome,
-    double? peso,
-    double? altura,
-  }) {
-    return UserModel(
-      nome ?? this.nome,
-      peso ?? this.peso,
-      altura ?? this.altura,
-    );
-  }
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -33,9 +21,9 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      map['nome'],
-      map['peso'],
-      map['altura'],
+      nome: map['nome'],
+      peso: map['peso'],
+      altura: map['altura'],
     );
   }
 

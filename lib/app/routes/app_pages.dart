@@ -1,5 +1,4 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:treinar_app/app/bindings/home_binding.dart';
 import 'package:treinar_app/app/bindings/splash_binding.dart';
 import 'package:treinar_app/app/bindings/welcome_binding.dart';
 import 'package:treinar_app/app/modules/home/home_page.dart';
@@ -23,7 +22,7 @@ class AppPages {
     GetPage(
       name: Routes.HOME,
       page: () => HomePage(),
-      binding: HomeBinding(),
+      binding: WelcomeBinding(),
     ),
   ];
 }

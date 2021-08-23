@@ -5,8 +5,9 @@ import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 class TextFormWidget extends StatelessWidget {
   final String? titulo;
   TextEditingController? controlador;
+  String? Function(String?)? validator;
 
-  TextFormWidget({this.titulo, this.controlador});
+  TextFormWidget({this.titulo, this.controlador, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class TextFormWidget extends StatelessWidget {
         color: AppColors.purpleLight,
       ),
       child: TextFormField(
+        validator: validator,
         controller: controlador,
         decoration: InputDecoration(
           labelText: titulo,

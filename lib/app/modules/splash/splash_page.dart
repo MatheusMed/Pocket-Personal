@@ -40,9 +40,7 @@ class SplashPage extends GetView<SplashController> {
                   style: OutlinedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                   ),
-                  onPressed: () {
-                    Get.offAndToNamed('/welcome');
-                  },
+                  onPressed: () => controller.proxima(),
                 ),
               )
             ],
