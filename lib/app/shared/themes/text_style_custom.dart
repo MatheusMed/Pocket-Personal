@@ -26,4 +26,7 @@ class TextStyleCustom {
   static final padrao = GoogleFonts.poppins(
     color: AppColors.primary,
   );
+  static final padraoBranco = GoogleFonts.poppins(
+    color: AppColors.branco,
+  );
 }

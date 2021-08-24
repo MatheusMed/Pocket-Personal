@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
 import 'package:treinar_app/app/routes/app_pages.dart';
 import 'package:treinar_app/app/shared/themes/app_theme.dart';
 
 import 'app/routes/app_routes.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+  print('INICIOU GETSTORAGE');
   runApp(MyApp());
 }
 

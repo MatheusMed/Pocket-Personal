@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.treinar_app">
    <application
-        android:label="treinar_app"
+        android:label="Pocket Personal"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

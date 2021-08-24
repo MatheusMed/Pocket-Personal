@@ -3,11 +3,10 @@ import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/welcome/welcome_controller.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
-import 'package:treinar_app/app/shared/widgets/textButtonWidget/radio_button_widget.dart';
 import 'package:treinar_app/app/shared/widgets/textFormWidget/text_form_widget.dart';
 import 'package:validatorless/validatorless.dart';
 
-class WelcomePage extends GetView<WelcomeController> {
+class WelcomePage extends GetResponsiveView<WelcomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +14,7 @@ class WelcomePage extends GetView<WelcomeController> {
         child: Column(
           children: [
             SizedBox(
-              height: Get.height * .1 - 60,
+              height: Get.height * .1 - 50,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -55,32 +54,6 @@ class WelcomePage extends GetView<WelcomeController> {
                 ),
               ),
             ),
-            Text(
-              'Selecione seu sexo',
-              style: TextStyleCustom.titleRadio,
-            ),
-            Obx(() {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RadioButtonWidget(
-                      valor: controller.numberValue0.value,
-                      valorGrupo: controller.selectedValue.value,
-                      funcao: (value) => controller.pressRadioButon(value)),
-                  Text('Masculino', style: TextStyleCustom.padrao),
-                  RadioButtonWidget(
-                      valor: controller.numberValue1.value,
-                      valorGrupo: controller.selectedValue.value,
-                      funcao: (value) => controller.pressRadioButon(value)),
-                  Text('Feminino', style: TextStyleCustom.padrao),
-                  RadioButtonWidget(
-                      valor: controller.numberValue2.value,
-                      valorGrupo: controller.selectedValue.value,
-                      funcao: (value) => controller.pressRadioButon(value)),
-                  Text('Prefiro nao dizer', style: TextStyleCustom.padrao),
-                ],
-              );
-            }),
             SizedBox(height: Get.height * .1),
             SizedBox(
               height: Get.height * .1 - 30,
