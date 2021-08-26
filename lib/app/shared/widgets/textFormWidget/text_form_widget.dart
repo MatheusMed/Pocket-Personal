@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 
+// ignore: must_be_immutable
 class TextFormWidget extends StatelessWidget {
   final String? titulo;
   TextEditingController? controlador;
@@ -20,6 +21,7 @@ class TextFormWidget extends StatelessWidget {
       child: TextFormField(
         validator: validator,
         controller: controlador,
+        maxLines: null,
         decoration: InputDecoration(
           labelText: titulo,
           labelStyle: TextStyleCustom.padrao,

@@ -23,10 +23,20 @@ class TextStyleCustom {
     color: AppColors.primaryBase,
     fontWeight: FontWeight.w600,
   );
+  static final minimoTitle = GoogleFonts.robotoCondensed(
+    fontSize: 30,
+    color: AppColors.primaryBase,
+    fontWeight: FontWeight.w600,
+  );
   static final padrao = GoogleFonts.poppins(
     color: AppColors.primary,
   );
+  static final padraoText = GoogleFonts.poppins(
+    color: AppColors.primary,
+    fontSize: 20,
+  );
   static final padraoBranco = GoogleFonts.poppins(
     color: AppColors.branco,
+    fontSize: 17,
   );
 }

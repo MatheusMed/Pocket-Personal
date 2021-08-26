@@ -8,6 +8,8 @@ import 'package:treinar_app/app/repository/database/sql_database.dart';
 import 'package:treinar_app/app/repository/models/exercicios_model.dart';
 import 'package:treinar_app/app/repository/models/user_model.dart';
 
+import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
+
 class WelcomeController extends GetxController {
   final formkey = GlobalKey<FormState>();
 
@@ -78,28 +80,6 @@ class WelcomeController extends GetxController {
     await box.write('key', selecionad);
   }
 
-  // RxList exerciciosBasico = [
-  //   'Flexão de braço',
-  //   'Flexão de braço inclinada',
-  //   'Rosca martelo',
-  //   'Rosca direta',
-  //   'Rosca direta sentado',
-  //   'Prancha de antebraço',
-  //   'Rosca bíceps direta com barra',
-  //   'Rosca bíceps direta com barra e pegada ampla',
-  //   'Rosca bíceps direta com halteres',
-  //   'Rosca bíceps martelo em pé com halteres',
-  //   'Rosca bíceps em pé na barra EZ',
-  //   'Rosca bíceps no cabo e usando a corda',
-  //   'Rosca bíceps direta com barra e pegada ampla',
-  //   'Rosca bíceps direta com halteres',
-  //   'Rosca bíceps martelo em pé com halteres',
-  //   'Rosca bíceps em pé na barra EZ',
-  //   'Rosca bíceps no cabo e usando a corda',
-  //   'Rosca bíceps direta com barra e pegada ampla',
-  //   'Rosca bíceps direta com halteres',
-  // ].obs;
-
   Future<List<UserModel>> dadosPessoas() async {
     db = await SqlDatabase.instace.database;
     var user = await db.query('pessoa', orderBy: 'id');
@@ -111,6 +91,32 @@ class WelcomeController extends GetxController {
   Future<int?> add(UserModel user) async {
     db = await SqlDatabase.instace.database;
     return await db.insert('pessoa', user.toMap());
+  }
+
+  close() {
+    Get.defaultDialog(
+      title: 'Deletar seus Dados',
+      titleStyle: TextStyleCustom.titleRadio,
+      content: Container(),
+      confirm: TextButton(
+        onPressed: () async {
+          db = await SqlDatabase.instace.database;
+          await db.delete('pessoa');
+          Get.offAllNamed('/splash');
+        },
+        child: Text(
+          'Excluir',
+          style: TextStyleCustom.titleRadio,
+        ),
+      ),
+      cancel: TextButton(
+        onPressed: () => Get.back(),
+        child: Text(
+          'Cancelar',
+          style: TextStyleCustom.titleRadio,
+        ),
+      ),
+    );
   }
 
   validade() {
@@ -132,7 +138,7 @@ class WelcomeController extends GetxController {
     pesoC.clear();
     alturaC.clear();
     dadosPessoas();
-    Get.offAllNamed('/home');
+    Get.offAllNamed('/pageView');
   }
 
   @override

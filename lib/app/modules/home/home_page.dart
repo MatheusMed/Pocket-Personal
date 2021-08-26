@@ -1,10 +1,14 @@
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:treinar_app/app/modules/adicionarExercicio/adicionar_exercicio.dart';
+import 'package:treinar_app/app/modules/configs/config_page.dart';
 import 'package:treinar_app/app/modules/welcome/welcome_controller.dart';
 import 'package:treinar_app/app/repository/models/user_model.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 import 'package:treinar_app/app/shared/widgets/RadioButtonWidget/radio_button_widget.dart';
+import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class HomePage extends GetResponsiveView<WelcomeController> {
   @override
@@ -16,6 +20,15 @@ class HomePage extends GetResponsiveView<WelcomeController> {
           brightness: Brightness.dark,
           elevation: 0,
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Get.to(
+            () => AdicionarExercicio(),
+            fullscreenDialog: true,
+            preventDuplicates: true,
+          ),
+          backgroundColor: AppColors.primary,
+          child: Icon(Icons.add),
+        ),
         body: Obx(() {
           return ListView.builder(
             itemCount: controller.listUser.length,
@@ -24,7 +37,7 @@ class HomePage extends GetResponsiveView<WelcomeController> {
               return Column(
                 children: [
                   Container(
-                    height: Get.height * .10,
+                    height: Get.height * .12,
                     padding: EdgeInsets.only(top: 20, left: 10),
                     width: Get.width,
                     decoration: BoxDecoration(
@@ -40,9 +53,11 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                         style: TextStyleCustom.textBtn,
                       ),
                       trailing: IconButton(
-                        onPressed: () => Get.offAllNamed('/splash'),
+                        onPressed: () {
+                          Get.to(ConfigPage(), fullscreenDialog: true);
+                        },
                         icon: Icon(
-                          Icons.exit_to_app_rounded,
+                          CommunityMaterialIcons.cog_outline,
                           color: AppColors.branco,
                           size: 30,
                         ),
@@ -105,19 +120,21 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                                   itemCount: controller.listExeBasico.length,
                                   itemBuilder: (context, i) {
                                     final nome = controller.listExeBasico[i];
-                                    return Card(
-                                      elevation: 1,
-                                      color: AppColors.primary,
-                                      child: ListTile(
-                                        title: Text(
-                                          nome.titulo!,
-                                          style: TextStyleCustom.padraoBranco,
-                                        ),
-                                        trailing: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: AppColors.branco,
-                                        ),
-                                        onTap: () {},
+                                    return ListtileCustom(
+                                      titulo: Text(nome.titulo!,
+                                          style: TextStyleCustom.padraoBranco),
+                                      trailing: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: AppColors.branco,
+                                      ),
+                                      onCLik: () => Get.toNamed(
+                                        '/exerc',
+                                        preventDuplicates: true,
+                                        arguments: [
+                                          nome.titulo,
+                                          nome.prevDescricao,
+                                          nome.execusao,
+                                        ],
                                       ),
                                     );
                                   },

@@ -18,7 +18,7 @@ class SqlDatabase {
 
   Future<Database?> _initDatabase() async {
     Directory dir = await getApplicationDocumentsDirectory();
-    String path = join(dir.path, 'pessoa.db');
+    String path = join(dir.path, 'pessoas.db');
     return await openDatabase(
       path,
       version: 1,
@@ -27,13 +27,25 @@ class SqlDatabase {
   }
 
   Future _onCreate(Database db, int version) async {
-    await db.execute(""" 
-        CREATE TABLE pessoa(
+    await db.execute(_pessoa);
+    await db.execute(_exercicio);
+  }
+
+  String get _exercicio => """ 
+        CREATE TABLE exercicio (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          titulo TEXT,
+          execusao TEXT,
+          prevDescricao TEXT
+        );
+      """;
+
+  String get _pessoa => """ 
+        CREATE TABLE pessoa (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           nome TEXT,
           altura TEXT,
           peso TEXT
         );
-      """);
-  }
+      """;
 }

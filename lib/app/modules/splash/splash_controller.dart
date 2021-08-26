@@ -15,7 +15,7 @@ class SplashController extends GetxController {
     if (user.isEmpty) {
       Get.offAndToNamed('/welcome');
     } else if (user.isNotEmpty) {
-      Get.offAndToNamed('/home');
+      Get.offAndToNamed('/pageView');
     }
   }
 }
