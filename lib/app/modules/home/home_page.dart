@@ -8,6 +8,7 @@ import 'package:treinar_app/app/repository/models/user_model.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 import 'package:treinar_app/app/shared/widgets/RadioButtonWidget/radio_button_widget.dart';
+import 'package:treinar_app/app/shared/widgets/app_bar_custom/app_bar_custom.dart';
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class HomePage extends GetResponsiveView<WelcomeController> {
@@ -36,31 +37,16 @@ class HomePage extends GetResponsiveView<WelcomeController> {
               UserModel user = controller.listUser[i];
               return Column(
                 children: [
-                  Container(
-                    height: Get.height * .12,
-                    padding: EdgeInsets.only(top: 20, left: 10),
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(12),
-                        bottomRight: Radius.circular(12),
-                      ),
-                      color: AppColors.primary,
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        'Bem vindo ${user.nome!.trim()}',
-                        style: TextStyleCustom.textBtn,
-                      ),
-                      trailing: IconButton(
-                        onPressed: () {
-                          Get.to(ConfigPage(), fullscreenDialog: true);
-                        },
-                        icon: Icon(
-                          CommunityMaterialIcons.cog_outline,
-                          color: AppColors.branco,
-                          size: 30,
-                        ),
+                  AppBarCustom(
+                    titulo: 'Bem vindo(a) ${user.nome!.trim()}',
+                    trailing: IconButton(
+                      onPressed: () {
+                        Get.to(() => ConfigPage(), fullscreenDialog: true);
+                      },
+                      icon: Icon(
+                        CommunityMaterialIcons.cog_outline,
+                        color: AppColors.branco,
+                        size: 30,
                       ),
                     ),
                   ),
@@ -78,27 +64,27 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                           children: [
                             RadioButtonWidget(
                                 valor: controller.numberValue0.value,
-                                valorGrupo: controller.selectedValue.value,
+                                valorGrupo: controller.selectedValue!.value,
                                 funcao: (value) =>
                                     controller.pressRadioBtn(value)),
                             Text('Iniciante', style: TextStyleCustom.padrao),
                             RadioButtonWidget(
                                 valor: controller.numberValue1.value,
-                                valorGrupo: controller.selectedValue.value,
+                                valorGrupo: controller.selectedValue!.value,
                                 funcao: (value) =>
                                     controller.pressRadioBtn(value)),
                             Text('Ja faz Exercicios',
                                 style: TextStyleCustom.padrao),
                             RadioButtonWidget(
                                 valor: controller.numberValue2.value,
-                                valorGrupo: controller.selectedValue.value,
+                                valorGrupo: controller.selectedValue!.value,
                                 funcao: (value) =>
                                     controller.pressRadioBtn(value)),
                             Text('Try Hard', style: TextStyleCustom.padrao),
                           ],
                         );
                       }),
-                      Obx(() => controller.selectedValue.value == 0
+                      Obx(() => controller.selectedValue!.value == 0
                           ? SizedBox(
                               height: Get.height * .7,
                               child: Center(
@@ -111,11 +97,16 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                             )
                           : Container()),
                       Obx(
-                        () => controller.selectedValue.value == 1
+                        () => controller.selectedValue!.value == 1
                             ? SizedBox(
                                 height: Get.height * .7,
                                 width: Get.width * .96,
-                                child: ListView.builder(
+                                child: ListView.separated(
+                                  separatorBuilder: (_, __) => Divider(
+                                    thickness: 2,
+                                    height: 20,
+                                    color: AppColors.primaryBase,
+                                  ),
                                   shrinkWrap: true,
                                   itemCount: controller.listExeBasico.length,
                                   itemBuilder: (context, i) {
@@ -134,6 +125,7 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                                           nome.titulo,
                                           nome.prevDescricao,
                                           nome.execusao,
+                                          nome.imagem,
                                         ],
                                       ),
                                     );

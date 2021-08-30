@@ -44,8 +44,9 @@ class SqlDatabase {
         CREATE TABLE pessoa (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           nome TEXT,
-          altura TEXT,
-          peso TEXT
+          altura INTEGER,
+          peso INTEGER,
+          resultado FLOAT
         );
       """;
 }

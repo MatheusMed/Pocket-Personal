@@ -1,8 +1,11 @@
+import 'package:community_material_icon/community_material_icon.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/adicionarExercicio/adicionar_controller.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
+import 'package:treinar_app/app/shared/widgets/app_bar_custom/app_bar_custom.dart';
 import 'package:treinar_app/app/shared/widgets/textFormWidget/text_form_widget.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -13,14 +16,25 @@ class AdicionarExercicio extends GetView<AdcionarExerController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        brightness: Brightness.dark,
         backgroundColor: AppColors.primary,
-        toolbarHeight: 120,
-        title: const Text('Cadastrar exercicio'),
+        toolbarHeight: 0,
+        brightness: Brightness.dark,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            AppBarCustom(
+              titulo: 'Cadastrar Exericio',
+              leading: IconButton(
+                onPressed: () => Get.back(),
+                icon: Icon(
+                  CommunityMaterialIcons.close_circle_outline,
+                  size: 25,
+                  color: AppColors.branco,
+                ),
+              ),
+            ),
             SizedBox(
               height: Get.height * .1 - 50,
             ),

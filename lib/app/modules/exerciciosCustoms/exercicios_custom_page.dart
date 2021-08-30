@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/adicionarExercicio/adicionar_controller.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
+import 'package:treinar_app/app/shared/widgets/app_bar_custom/app_bar_custom.dart';
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class ExerciciosCustomPage extends GetView<AdcionarExerController> {
@@ -23,26 +24,12 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                height: Get.height * .12,
-                padding: EdgeInsets.only(top: 20, left: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
-                  ),
-                  color: AppColors.primary,
-                ),
-                child: ListTile(
-                  title: Text(
-                    'Exercicios Customizados',
-                    style: TextStyleCustom.textBtn,
-                  ),
-                  trailing: Icon(
-                    CommunityMaterialIcons.puzzle_outline,
-                    size: 32,
-                    color: AppColors.branco,
-                  ),
+              AppBarCustom(
+                titulo: 'Exercicios Customizados',
+                trailing: Icon(
+                  CommunityMaterialIcons.puzzle_outline,
+                  size: 32,
+                  color: AppColors.branco,
                 ),
               ),
               Obx(() {
@@ -63,23 +50,37 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                           color: AppColors.branco,
                         ),
                         onLongPress: () {
-                          Get.defaultDialog(
-                            title: 'Deletar nota',
-                            titleStyle: TextStyleCustom.minimoTitle,
-                            content: Container(),
-                            confirm: TextButton(
-                              onPressed: () {
-                                controller.delete(item.id!);
-                                Get.back();
-                              },
-                              child: Text('Deletar',
-                                  style: TextStyleCustom.padraoText),
+                          Get.bottomSheet(
+                            Container(
+                              height: Get.height * .25,
+                              width: Get.width,
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Deseja continua o processo?',
+                                    style: TextStyleCustom.minimoTitle,
+                                  ),
+                                  ListtileCustom(
+                                    onCLik: () {
+                                      controller.delete(item.id!);
+                                      Get.back();
+                                    },
+                                    titulo: Text('Sim',
+                                        style: TextStyleCustom.padraoBranco),
+                                  ),
+                                  ListtileCustom(
+                                    onCLik: () => Get.back(),
+                                    titulo: Text('Nao',
+                                        style: TextStyleCustom.padraoBranco),
+                                  ),
+                                ],
+                              ),
                             ),
-                            cancel: TextButton(
-                              onPressed: () => Get.back(),
-                              child: Text('Cancelar',
-                                  style: TextStyleCustom.padraoText),
-                            ),
+                            backgroundColor: AppColors.purpleLightOne,
                           );
                         },
                         onCLik: () => Get.toNamed(
@@ -89,6 +90,7 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                             item.titulo,
                             item.prevDescricao,
                             item.execusao,
+                            'assets/animation/padrao.json',
                           ],
                         ),
                       );

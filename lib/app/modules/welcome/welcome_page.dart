@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/welcome/welcome_controller.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
@@ -10,63 +11,71 @@ class WelcomePage extends GetResponsiveView<WelcomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: Get.height * .1 - 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                'Digite algumas de suas informaçoẽs para que possamos avaliar e assim passar a sua rotina',
-                style: TextStyleCustom.titleMin,
-                textAlign: TextAlign.start,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: Get.height * .1 - 50,
               ),
-            ),
-            SizedBox(
-              height: Get.height * .1,
-            ),
-            Form(
-              key: controller.formkey,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    TextFormWidget(
-                      titulo: 'Digite seu nome',
-                      controlador: controller.nomeC,
-                      validator: Validatorless.required('Nome Obrigatorio'),
-                    ),
-                    SizedBox(height: Get.height * 0.1 - 50),
-                    TextFormWidget(
-                      titulo: 'Digite sua altura',
-                      controlador: controller.alturaC,
-                      validator: Validatorless.required('Altura Obrigatorio'),
-                    ),
-                    SizedBox(height: Get.height * 0.1 - 50),
-                    TextFormWidget(
-                      titulo: 'Digite seu peso',
-                      controlador: controller.pesoC,
-                      validator: Validatorless.required('Peso Obrigatorio'),
-                    ),
-                  ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  'Digite algumas de suas informaçoẽs para que possamos avaliar e assim passar a sua rotina',
+                  style: TextStyleCustom.titleMin,
+                  textAlign: TextAlign.start,
                 ),
               ),
-            ),
-            SizedBox(height: Get.height * .1),
-            SizedBox(
-              height: Get.height * .1 - 30,
-              width: Get.width * .95,
-              child: OutlinedButton(
-                child: Text('Cadastrar', style: TextStyleCustom.textBtn),
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                ),
-                onPressed: () => controller.validade(),
+              SizedBox(
+                height: Get.height * .1,
               ),
-            ),
-          ],
+              Form(
+                key: controller.formkey,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      TextFormWidget(
+                        titulo: 'Digite seu nome',
+                        controlador: controller.nomeC,
+                        validator: Validatorless.required('Nome Obrigatorio'),
+                      ),
+                      SizedBox(height: Get.height * 0.1 - 50),
+                      TextFormWidget(
+                        titulo: 'Digite sua altura',
+                        controlador: controller.alturaC,
+                        tipoDeTeclado:
+                            TextInputType.numberWithOptions(decimal: true),
+                        validator: Validatorless.required('Altura Obrigatorio'),
+                      ),
+                      SizedBox(height: Get.height * 0.1 - 50),
+                      TextFormWidget(
+                        titulo: 'Digite seu peso',
+                        controlador: controller.pesoC,
+                        tipoDeTeclado: TextInputType.number,
+                        validator: Validatorless.required('Peso Obrigatorio'),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: Get.height * .1 - 60),
+              SizedBox(
+                height: Get.height * .1 - 30,
+                width: Get.width * .95,
+                child: OutlinedButton(
+                  child: Text('Cadastrar', style: TextStyleCustom.textBtn),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                  ),
+                  onPressed: () => controller.validade(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -7,8 +7,10 @@ import 'package:sqflite/sqflite.dart';
 import 'package:treinar_app/app/repository/database/sql_database.dart';
 import 'package:treinar_app/app/repository/models/exercicios_model.dart';
 import 'package:treinar_app/app/repository/models/user_model.dart';
+import 'package:treinar_app/app/shared/themes/app_colors.dart';
 
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
+import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class WelcomeController extends GetxController {
   final formkey = GlobalKey<FormState>();
@@ -18,6 +20,41 @@ class WelcomeController extends GetxController {
   final pesoC = TextEditingController();
 
   late Database db;
+
+  RxBool? valor = false.obs;
+
+  alterar(value) async {
+    var selecionado = valor!.value = value;
+    await box.write('box', selecionado);
+  }
+
+  showModal() {
+    Get.bottomSheet(
+      Container(
+        height: Get.height * .25,
+        width: Get.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Deseja continua o processo?',
+              style: TextStyleCustom.minimoTitle,
+            ),
+            ListtileCustom(
+              onCLik: () {},
+              titulo: Text('Sim', style: TextStyleCustom.padraoBranco),
+            ),
+            ListtileCustom(
+              onCLik: () => Get.back(),
+              titulo: Text('Nao', style: TextStyleCustom.padraoBranco),
+            ),
+          ],
+        ),
+      ),
+      backgroundColor: AppColors.purpleLightOne,
+    );
+  }
 
   RxList<UserModel> listUser = RxList<UserModel>();
 
@@ -29,15 +66,18 @@ class WelcomeController extends GetxController {
             'O agachamento é um exercício que irá ajudar a ficar com glúteos mais firmes e definidos, mas também pode trazer outros benefícios como definir barriga, aumentar a massa muscular das coxas e reduzir celulites.',
         execusao:
             'Fique de pé com as pernas afastadas na largura dos ombros. Com as costas sempre eretas, flexione o joelho com o bumbum para trás como se estivesse sentando em uma cadeira. Volte à posição inicial, ficando de pé e repita o movimento 12 vezes de três a quatro séries.',
+        imagem: 'assets/animation/padrao.json',
       ),
       ExerciciosModel(
           titulo: 'Prancha',
+          imagem: 'assets/animation/padrao.json',
           prevDescricao:
               'Esse exercício é perfeito para fortalecer a região do core, ou seja, os músculos do abdômen, lombar e quadril. Ele ainda ajuda a melhorar a postura, reduzir os riscos de lesões e a desenvolver melhor desempenho em outros esportes.',
           execusao:
               'Deite no chão de barriga para baixo apoiando-se nos antebraços, eles precisam estar paralelos e afastados do ombro igualmente. Mantenha a palma da mão para baixo. Levante o quadril e deixe o corpo alinhado, mantendo o abdômen contraído e o peso nas pontas dos pés e antebraços. Permaneça na posição por pelo menos um minuto.'),
       ExerciciosModel(
         titulo: 'Afundo',
+        imagem: 'assets/animation/padrao.json',
         prevDescricao:
             'Esse é outro exercício que ajuda a definir as coxas e os glúteos, mas um pouco mais intenso que o agachamento. Ele é perfeito para quem busca definir a parte inferior do corpo e praticantes de esportes como corrida, futebol e basquete, pois ajuda a fortalecer as penas e prevenir lesões.',
         execusao:
@@ -52,6 +92,7 @@ class WelcomeController extends GetxController {
       ),
       ExerciciosModel(
         titulo: 'Polichinelo',
+        imagem: 'assets/animation/padrao.json',
         prevDescricao:
             'O polichinelo auxilia no condicionamento físico e cardiovascular, queima calorias e melhora a coordenação motora. É ótimo como aquecimento antes de iniciar exercícios mais pesados',
         execusao:
@@ -59,6 +100,7 @@ class WelcomeController extends GetxController {
       ),
       ExerciciosModel(
         titulo: 'Marcha estacionária',
+        imagem: 'assets/animation/padrao.json',
         prevDescricao:
             'A corrida estacionária é outro exercício muito bom para aquecimento, mas também proporciona seus benefícios. Ela ajuda a queimar calorias e colabora com a definição do abdômen, pernas e bumbum.',
         execusao:
@@ -73,10 +115,10 @@ class WelcomeController extends GetxController {
   RxInt numberValue1 = 2.obs;
   RxInt numberValue2 = 3.obs;
 
-  RxInt selectedValue = 0.obs;
+  RxInt? selectedValue = 0.obs;
 
   pressRadioBtn(value) async {
-    var selecionad = selectedValue.value = value;
+    var selecionad = selectedValue!.value = value;
     await box.write('key', selecionad);
   }
 
@@ -101,7 +143,9 @@ class WelcomeController extends GetxController {
       confirm: TextButton(
         onPressed: () async {
           db = await SqlDatabase.instace.database;
-          await db.delete('pessoa');
+          await db.delete(
+            'pessoa',
+          );
           Get.offAllNamed('/splash');
         },
         child: Text(
@@ -129,9 +173,11 @@ class WelcomeController extends GetxController {
   void criarUser() {
     add(
       UserModel(
-        nome: nomeC.text,
-        peso: pesoC.text,
-        altura: alturaC.text,
+        nome: nomeC.text.trim(),
+        peso: int.parse(pesoC.text),
+        altura: int.parse(alturaC.text),
+        resultado: int.parse(pesoC.text) /
+            (int.parse(alturaC.text) * int.parse(alturaC.text)),
       ),
     );
     nomeC.clear();
@@ -149,7 +195,8 @@ class WelcomeController extends GetxController {
 
   @override
   void onReady() {
-    selectedValue.value = box.read('key');
+    selectedValue!.value = box.read('key');
+    valor!.value = box.read('box');
     super.onReady();
   }
 }

@@ -3,14 +3,16 @@ import 'dart:convert';
 class UserModel {
   final int? id;
   final String? nome;
-  final String? peso;
-  final String? altura;
+  final int? peso;
+  final int? altura;
+  final double? resultado;
 
   UserModel({
     this.id,
     this.nome,
     this.peso,
     this.altura,
+    this.resultado,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +21,7 @@ class UserModel {
       'nome': nome,
       'peso': peso,
       'altura': altura,
+      'resultado': resultado,
     };
   }
 
@@ -28,6 +31,7 @@ class UserModel {
       nome: map['nome'],
       peso: map['peso'],
       altura: map['altura'],
+      resultado: map['resultado'],
     );
   }
 
@@ -38,7 +42,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, nome: $nome, peso: $peso, altura: $altura)';
+    return 'UserModel(id: $id, nome: $nome, peso: $peso, altura: $altura, resultado: $resultado)';
   }
 
   @override
@@ -49,25 +53,32 @@ class UserModel {
         other.id == id &&
         other.nome == nome &&
         other.peso == peso &&
-        other.altura == altura;
+        other.altura == altura &&
+        other.resultado == resultado;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ nome.hashCode ^ peso.hashCode ^ altura.hashCode;
+    return id.hashCode ^
+        nome.hashCode ^
+        peso.hashCode ^
+        altura.hashCode ^
+        resultado.hashCode;
   }
 
   UserModel copyWith({
     int? id,
     String? nome,
-    String? peso,
-    String? altura,
+    int? peso,
+    int? altura,
+    double? resultado,
   }) {
     return UserModel(
       id: id ?? this.id,
       nome: nome ?? this.nome,
       peso: peso ?? this.peso,
       altura: altura ?? this.altura,
+      resultado: resultado ?? this.resultado,
     );
   }
 }

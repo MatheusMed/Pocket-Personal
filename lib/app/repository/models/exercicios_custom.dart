@@ -5,7 +5,6 @@ class ExerciciosCustom {
   final String? titulo;
   final String? execusao;
   final String? prevDescricao;
-
   ExerciciosCustom({
     this.id,
     this.titulo,

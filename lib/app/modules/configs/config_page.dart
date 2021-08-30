@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/welcome/welcome_controller.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
+import 'package:treinar_app/app/shared/widgets/dividerListTile/divider_list_tile.dart';
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
+import 'package:treinar_app/app/shared/widgets/swicth_custom/switch_custom.dart';
 
 class ConfigPage extends GetResponsiveView<WelcomeController> {
   @override
@@ -57,28 +59,30 @@ class ConfigPage extends GetResponsiveView<WelcomeController> {
                       final user = controller.listUser[i];
                       return Column(
                         children: [
-                          Card(
-                            color: AppColors.primary,
-                            child: ListTile(
-                              title: Text(
-                                'Dados de Perfil',
-                                textAlign: TextAlign.center,
-                                style: TextStyleCustom.padraoBranco,
-                              ),
-                            ),
+                          DividerListTile(
+                            titulo: 'Dados do perfil',
                           ),
                           ListtileCustom(
                             titulo: Text(
-                              'Nome ${user.nome!.toUpperCase().trim()}',
+                              'Nome: ${user.nome}',
                               style: TextStyleCustom.padraoBranco,
                             ),
                             subtitle: Text(
-                              'Peso ${user.peso!.toUpperCase().trim()}',
+                              'Peso: ${user.peso!}',
                               style: TextStyleCustom.padraoBranco,
                             ),
-                            trailing: Text(
-                              'Altura ${user.altura!.toUpperCase().trim()}',
-                              style: TextStyleCustom.padraoBranco,
+                            trailing: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Altura: ${user.altura!}',
+                                  style: TextStyleCustom.padraoBranco,
+                                ),
+                                Text(
+                                  'IMC: ${user.resultado!.toStringAsFixed(4).replaceAll('0', '').replaceAll('.', '')}',
+                                  style: TextStyleCustom.padraoBranco,
+                                )
+                              ],
                             ),
                           ),
                         ],
@@ -88,13 +92,19 @@ class ConfigPage extends GetResponsiveView<WelcomeController> {
                 ),
               ),
               SizedBox(height: Get.height * .1 - 80),
-              Card(
-                color: AppColors.primary,
-                child: ListTile(
-                  title: Text(
-                    'Adicionais',
-                    textAlign: TextAlign.center,
-                    style: TextStyleCustom.padraoBranco,
+              DividerListTile(titulo: 'Adicionais'),
+              SizedBox(height: Get.height * .1 - 80),
+              ListtileCustom(
+                // onCLik: () => controller.close(),
+                titulo: Text(
+                  'Treinos Personalizados por nossa equipe',
+                  style: TextStyleCustom.padraoBranco,
+                ),
+
+                trailing: Obx(
+                  () => SwitchCustom(
+                    onChanged: (value) => controller.alterar(value),
+                    value: controller.valor!.value,
                   ),
                 ),
               ),

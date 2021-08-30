@@ -4,11 +4,13 @@ class ExerciciosModel {
   final String? titulo;
   final String? execusao;
   final String? prevDescricao;
+  final String? imagem;
 
   ExerciciosModel({
     this.titulo,
     this.execusao,
     this.prevDescricao,
+    this.imagem,
   });
 
   Map<String, dynamic> toMap() {
@@ -16,6 +18,7 @@ class ExerciciosModel {
       'titulo': titulo,
       'execusao': execusao,
       'prevDescricao': prevDescricao,
+      'imagem': imagem,
     };
   }
 
@@ -24,6 +27,7 @@ class ExerciciosModel {
       titulo: map['titulo'],
       execusao: map['execusao'],
       prevDescricao: map['prevDescricao'],
+      imagem: map['imagem'],
     );
   }
 
@@ -33,8 +37,9 @@ class ExerciciosModel {
       ExerciciosModel.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'ExerciciosModel(titulo: $titulo, execusao: $execusao, prevDescricao: $prevDescricao)';
+  String toString() {
+    return 'ExerciciosModel(titulo: $titulo, execusao: $execusao, prevDescricao: $prevDescricao, imagem: $imagem)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -43,22 +48,29 @@ class ExerciciosModel {
     return other is ExerciciosModel &&
         other.titulo == titulo &&
         other.execusao == execusao &&
-        other.prevDescricao == prevDescricao;
+        other.prevDescricao == prevDescricao &&
+        other.imagem == imagem;
   }
 
   @override
-  int get hashCode =>
-      titulo.hashCode ^ execusao.hashCode ^ prevDescricao.hashCode;
+  int get hashCode {
+    return titulo.hashCode ^
+        execusao.hashCode ^
+        prevDescricao.hashCode ^
+        imagem.hashCode;
+  }
 
   ExerciciosModel copyWith({
     String? titulo,
     String? execusao,
     String? prevDescricao,
+    String? imagem,
   }) {
     return ExerciciosModel(
       titulo: titulo ?? this.titulo,
       execusao: execusao ?? this.execusao,
       prevDescricao: prevDescricao ?? this.prevDescricao,
+      imagem: imagem ?? this.imagem,
     );
   }
 }
