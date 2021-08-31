@@ -61,6 +61,10 @@ class ConfigPage extends GetResponsiveView<WelcomeController> {
                         children: [
                           DividerListTile(
                             titulo: 'Dados do perfil',
+                            trailing: Icon(
+                              Icons.person,
+                              color: AppColors.branco,
+                            ),
                           ),
                           ListtileCustom(
                             titulo: Text(
@@ -92,7 +96,13 @@ class ConfigPage extends GetResponsiveView<WelcomeController> {
                 ),
               ),
               SizedBox(height: Get.height * .1 - 80),
-              DividerListTile(titulo: 'Adicionais'),
+              DividerListTile(
+                titulo: 'Adicionais',
+                trailing: Icon(
+                  Icons.settings,
+                  color: AppColors.branco,
+                ),
+              ),
               SizedBox(height: Get.height * .1 - 80),
               ListtileCustom(
                 // onCLik: () => controller.close(),

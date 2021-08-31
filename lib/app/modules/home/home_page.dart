@@ -44,7 +44,8 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                         Get.to(() => ConfigPage(), fullscreenDialog: true);
                       },
                       icon: Icon(
-                        CommunityMaterialIcons.cog_outline,
+                        // CommunityMaterialIcons.cog_outline,
+                        Icons.settings,
                         color: AppColors.branco,
                         size: 30,
                       ),

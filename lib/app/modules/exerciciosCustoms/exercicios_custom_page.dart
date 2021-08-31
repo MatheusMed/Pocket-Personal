@@ -52,17 +52,18 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                         onLongPress: () {
                           Get.bottomSheet(
                             Container(
-                              height: Get.height * .25,
+                              height: Get.height * .30,
                               width: Get.width,
                               padding: EdgeInsets.all(10),
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Deseja continua o processo?',
+                                    'Excluir exercício',
                                     style: TextStyleCustom.minimoTitle,
+                                    textAlign: TextAlign.center,
                                   ),
                                   ListtileCustom(
                                     onCLik: () {
@@ -80,7 +81,13 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                                 ],
                               ),
                             ),
-                            backgroundColor: AppColors.purpleLightOne,
+                            isDismissible: false,
+                            backgroundColor: AppColors.purpleLight,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10)),
+                            ),
                           );
                         },
                         onCLik: () => Get.toNamed(

@@ -68,8 +68,11 @@ class PageViewHome extends GetView<PageViewController> {
                 label: 'Nutriçao',
               ),
               BottomNavigationBarItem(
-                icon: Icon(CommunityMaterialIcons.puzzle_check_outline),
-                label: 'Exercicios Personalizados',
+                icon: Icon(
+                  CommunityMaterialIcons.puzzle_check_outline,
+                  size: 26,
+                ),
+                label: 'Personalizados',
               ),
             ],
           );
