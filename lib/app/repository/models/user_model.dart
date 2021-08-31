@@ -4,7 +4,7 @@ class UserModel {
   final int? id;
   final String? nome;
   final int? peso;
-  final int? altura;
+  final String? altura;
   final double? resultado;
 
   UserModel({
@@ -70,7 +70,7 @@ class UserModel {
     int? id,
     String? nome,
     int? peso,
-    int? altura,
+    String? altura,
     double? resultado,
   }) {
     return UserModel(

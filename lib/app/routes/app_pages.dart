@@ -8,6 +8,7 @@ import 'package:treinar_app/app/modules/home/home_page.dart';
 import 'package:treinar_app/app/modules/pageView/page_view_home.dart';
 
 import 'package:treinar_app/app/modules/splash/splash_page.dart';
+import 'package:treinar_app/app/modules/typoExercicios/type_exercicio.dart';
 import 'package:treinar_app/app/modules/welcome/welcome_page.dart';
 
 import 'app_routes.dart';
@@ -48,5 +49,10 @@ class AppPages {
       page: () => ExerciciosCustomPage(),
       binding: BindConfigBinding(),
     ),
+    GetPage(
+      name: Routes.TYPEEXERCICIO,
+      page: () => TypeExercicio(),
+      binding: BindConfigBinding(),
+    )
   ];
 }

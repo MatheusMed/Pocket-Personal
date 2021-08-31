@@ -57,7 +57,7 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                               padding: EdgeInsets.all(10),
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
@@ -66,6 +66,8 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                                     textAlign: TextAlign.center,
                                   ),
                                   ListtileCustom(
+                                    color:
+                                        AppColors.primarylight.withOpacity(.5),
                                     onCLik: () {
                                       controller.delete(item.id!);
                                       Get.back();
@@ -74,6 +76,8 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                                         style: TextStyleCustom.padraoBranco),
                                   ),
                                   ListtileCustom(
+                                    color:
+                                        AppColors.primarylight.withOpacity(.5),
                                     onCLik: () => Get.back(),
                                     titulo: Text('Nao',
                                         style: TextStyleCustom.padraoBranco),
@@ -81,8 +85,7 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                                 ],
                               ),
                             ),
-                            isDismissible: false,
-                            backgroundColor: AppColors.purpleLight,
+                            backgroundColor: AppColors.purpleLightOne,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),

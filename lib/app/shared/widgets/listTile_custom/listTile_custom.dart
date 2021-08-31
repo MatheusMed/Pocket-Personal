@@ -9,20 +9,23 @@ class ListtileCustom extends StatelessWidget {
   final Widget? trailing;
   final Widget? leading;
   final Widget? subtitle;
+  final Color? color;
 
-  ListtileCustom(
-      {this.titulo,
-      this.onCLik,
-      this.trailing,
-      this.leading,
-      this.subtitle,
-      this.onLongPress});
+  ListtileCustom({
+    this.titulo,
+    this.onCLik,
+    this.trailing,
+    this.leading,
+    this.subtitle,
+    this.onLongPress,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 1,
-      color: AppColors.primarylight,
+      color: color == null ? AppColors.primarylight : color,
       child: ListTile(
         title: titulo,
         subtitle: subtitle,

@@ -18,10 +18,10 @@ class SqlDatabase {
 
   Future<Database?> _initDatabase() async {
     Directory dir = await getApplicationDocumentsDirectory();
-    String path = join(dir.path, 'pessoas.db');
+    String path = join(dir.path, 'user.db');
     return await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: _onCreate,
     );
   }
@@ -44,7 +44,7 @@ class SqlDatabase {
         CREATE TABLE pessoa (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           nome TEXT,
-          altura INTEGER,
+          altura TEXT,
           peso INTEGER,
           resultado FLOAT
         );

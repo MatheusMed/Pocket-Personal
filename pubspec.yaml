@@ -33,6 +33,7 @@ dependencies:
   get_storage:
   community_material_icon: ^5.9.55
   lottie: ^1.1.0
+  easy_mask: ^2.0.1
 
 dev_dependencies:
   flutter_test:

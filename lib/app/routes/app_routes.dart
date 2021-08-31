@@ -6,4 +6,5 @@ abstract class Routes {
   static const EXERCICIOS = '/exerc';
   static const ADDEXERCICIOS = '/addExe';
   static const CUSTOMEXERCICIOS = '/custExerci';
+  static const TYPEEXERCICIO = '/typeExer';
 }

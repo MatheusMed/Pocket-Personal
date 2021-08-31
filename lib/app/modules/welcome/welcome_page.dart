@@ -1,3 +1,4 @@
+import 'package:easy_mask/easy_mask.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -47,6 +48,10 @@ class WelcomePage extends GetResponsiveView<WelcomeController> {
                         tipoDeTeclado:
                             TextInputType.numberWithOptions(decimal: true),
                         validator: Validatorless.required('Altura Obrigatorio'),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          TextInputMask(mask: '9.99', maxLength: 4)
+                        ],
                       ),
                       SizedBox(height: Get.height * 0.1 - 50),
                       TextFormWidget(
@@ -56,6 +61,7 @@ class WelcomePage extends GetResponsiveView<WelcomeController> {
                         validator: Validatorless.required('Peso Obrigatorio'),
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly,
+                          TextInputMask(mask: '999', maxLength: 3)
                         ],
                       ),
                     ],

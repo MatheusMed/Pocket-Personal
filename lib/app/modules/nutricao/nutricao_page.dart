@@ -43,7 +43,7 @@ class NutricaoPage extends StatelessWidget {
                       children: [
                         ListtileCustom(
                           titulo: Text(
-                            'Seu IMC atualmente: ${user.resultado!.toStringAsFixed(5).replaceAll('0', '').replaceAll('.', '').replaceAll('4', '.4')}',
+                            'Seu IMC atualmente: ${user.resultado!.toStringAsFixed(1)}',
                             style: TextStyleCustom.padraoBranco,
                           ),
                         ),

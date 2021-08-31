@@ -45,6 +45,14 @@ class ConfigPage extends GetResponsiveView<WelcomeController> {
                       color: AppColors.branco,
                     ),
                   ),
+                  trailing: IconButton(
+                    onPressed: () => controller.close(),
+                    icon: Icon(
+                      Icons.delete_sweep,
+                      color: AppColors.branco,
+                      size: 26,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: Get.height * .1 - 60),
@@ -60,7 +68,11 @@ class ConfigPage extends GetResponsiveView<WelcomeController> {
                       return Column(
                         children: [
                           DividerListTile(
-                            titulo: 'Dados do perfil',
+                            titulo: Text(
+                              'Dados de perfil',
+                              textAlign: TextAlign.center,
+                              style: TextStyleCustom.padraoBranco,
+                            ),
                             trailing: Icon(
                               Icons.person,
                               color: AppColors.branco,
@@ -83,7 +95,7 @@ class ConfigPage extends GetResponsiveView<WelcomeController> {
                                   style: TextStyleCustom.padraoBranco,
                                 ),
                                 Text(
-                                  'IMC: ${user.resultado!.toStringAsFixed(4).replaceAll('0', '').replaceAll('.', '')}',
+                                  'IMC: ${user.resultado!.toStringAsFixed(1)}',
                                   style: TextStyleCustom.padraoBranco,
                                 )
                               ],
@@ -97,9 +109,13 @@ class ConfigPage extends GetResponsiveView<WelcomeController> {
               ),
               SizedBox(height: Get.height * .1 - 80),
               DividerListTile(
-                titulo: 'Adicionais',
+                titulo: Text(
+                  'Adicionais',
+                  textAlign: TextAlign.center,
+                  style: TextStyleCustom.padraoBranco,
+                ),
                 trailing: Icon(
-                  Icons.settings,
+                  Icons.extension,
                   color: AppColors.branco,
                 ),
               ),

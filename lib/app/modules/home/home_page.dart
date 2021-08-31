@@ -9,6 +9,7 @@ import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 import 'package:treinar_app/app/shared/widgets/RadioButtonWidget/radio_button_widget.dart';
 import 'package:treinar_app/app/shared/widgets/app_bar_custom/app_bar_custom.dart';
+import 'package:treinar_app/app/shared/widgets/dividerListTile/divider_list_tile.dart';
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class HomePage extends GetResponsiveView<WelcomeController> {
@@ -85,52 +86,56 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                           ],
                         );
                       }),
-                      Obx(() => controller.selectedValue!.value == 0
-                          ? SizedBox(
-                              height: Get.height * .7,
-                              child: Center(
-                                child: Text(
-                                  'Nenhum nivel selecionado',
-                                  style: TextStyleCustom.title,
-                                  textAlign: TextAlign.center,
+                      Obx(
+                        () => controller.selectedValue!.value == 0
+                            ? SizedBox(
+                                height: Get.height * .7,
+                                child: Center(
+                                  child: Text(
+                                    'Nenhum nivel selecionado',
+                                    style: TextStyleCustom.title,
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                              ),
-                            )
-                          : Container()),
+                              )
+                            : Container(),
+                      ),
                       Obx(
                         () => controller.selectedValue!.value == 1
                             ? SizedBox(
-                                height: Get.height * .7,
+                                // height: Get.height,
                                 width: Get.width * .96,
-                                child: ListView.separated(
-                                  separatorBuilder: (_, __) => Divider(
-                                    thickness: 2,
-                                    height: 20,
-                                    color: AppColors.primaryBase,
-                                  ),
-                                  shrinkWrap: true,
-                                  itemCount: controller.listExeBasico.length,
-                                  itemBuilder: (context, i) {
-                                    final nome = controller.listExeBasico[i];
-                                    return ListtileCustom(
-                                      titulo: Text(nome.titulo!,
-                                          style: TextStyleCustom.padraoBranco),
-                                      trailing: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: AppColors.branco,
+                                child: Column(
+                                  children: [
+                                    ListView.separated(
+                                      itemCount: controller
+                                          .tipoDeExericicoBasico.length,
+                                      separatorBuilder: (_, __) => Divider(
+                                        thickness: 2,
+                                        height: 10,
+                                        endIndent: 10,
+                                        indent: 10,
+                                        color: AppColors.primaryBase,
                                       ),
-                                      onCLik: () => Get.toNamed(
-                                        '/exerc',
-                                        preventDuplicates: true,
-                                        arguments: [
-                                          nome.titulo,
-                                          nome.prevDescricao,
-                                          nome.execusao,
-                                          nome.imagem,
-                                        ],
-                                      ),
-                                    );
-                                  },
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, i) {
+                                        final nome =
+                                            controller.tipoDeExericicoBasico[i];
+                                        return ListtileCustom(
+                                          titulo: Text(nome.tipo!,
+                                              style:
+                                                  TextStyleCustom.padraoBranco),
+                                          trailing: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: AppColors.branco,
+                                          ),
+                                          onCLik: () => Get.toNamed('/typeExer',
+                                              preventDuplicates: true,
+                                              arguments: nome.listaExercicios),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                               )
                             : Container(),

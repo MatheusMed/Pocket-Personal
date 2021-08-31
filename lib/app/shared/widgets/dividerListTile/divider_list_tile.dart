@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
-import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 
 class DividerListTile extends StatelessWidget {
-  final String? titulo;
+  final Widget? titulo;
   final Widget? trailing;
 
   DividerListTile({this.titulo, this.trailing});
@@ -13,11 +12,7 @@ class DividerListTile extends StatelessWidget {
     return Card(
       color: AppColors.primary,
       child: ListTile(
-        title: Text(
-          titulo!,
-          textAlign: TextAlign.center,
-          style: TextStyleCustom.padraoBranco,
-        ),
+        title: titulo,
         trailing: trailing,
       ),
     );
