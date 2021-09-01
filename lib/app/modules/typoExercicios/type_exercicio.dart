@@ -59,10 +59,16 @@ class TypeExercicio extends GetResponsiveView<WelcomeController> {
                         Icons.arrow_forward_ios,
                         color: AppColors.branco,
                       ),
-                      // onCLik: () => Get.toNamed(
-                      //   '/exerc',
-                      //   preventDuplicates: true,
-                      // ),
+                      onCLik: () => Get.toNamed(
+                        '/exerc',
+                        preventDuplicates: true,
+                        arguments: [
+                          args[i].titulo,
+                          args[i].prevDescricao,
+                          args[i].execusao,
+                          args[i].imagem
+                        ],
+                      ),
                     );
                   },
                 ),

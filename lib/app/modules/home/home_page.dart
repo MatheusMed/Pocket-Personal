@@ -16,22 +16,23 @@ class HomePage extends GetResponsiveView<WelcomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.primary,
-          toolbarHeight: 0,
-          brightness: Brightness.dark,
-          elevation: 0,
+      appBar: AppBar(
+        backgroundColor: AppColors.primary,
+        toolbarHeight: 0,
+        brightness: Brightness.dark,
+        elevation: 0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.to(
+          () => AdicionarExercicio(),
+          fullscreenDialog: true,
+          preventDuplicates: true,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Get.to(
-            () => AdicionarExercicio(),
-            fullscreenDialog: true,
-            preventDuplicates: true,
-          ),
-          backgroundColor: AppColors.primary,
-          child: Icon(Icons.add),
-        ),
-        body: Obx(() {
+        backgroundColor: AppColors.primary,
+        child: Icon(Icons.add),
+      ),
+      body: Obx(
+        () {
           return ListView.builder(
             itemCount: controller.listUser.length,
             itemBuilder: (contx, i) {
@@ -71,18 +72,25 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                                     controller.pressRadioBtn(value)),
                             Text('Iniciante', style: TextStyleCustom.padrao),
                             RadioButtonWidget(
-                                valor: controller.numberValue1.value,
-                                valorGrupo: controller.selectedValue!.value,
-                                funcao: (value) =>
-                                    controller.pressRadioBtn(value)),
-                            Text('Ja faz Exercicios',
-                                style: TextStyleCustom.padrao),
+                              valor: controller.numberValue1.value,
+                              valorGrupo: controller.selectedValue!.value,
+                              funcao: (value) =>
+                                  controller.pressRadioBtn(value),
+                            ),
+                            Text(
+                              'Ja faz Exercicios',
+                              style: TextStyleCustom.padrao,
+                            ),
                             RadioButtonWidget(
-                                valor: controller.numberValue2.value,
-                                valorGrupo: controller.selectedValue!.value,
-                                funcao: (value) =>
-                                    controller.pressRadioBtn(value)),
-                            Text('Try Hard', style: TextStyleCustom.padrao),
+                              valor: controller.numberValue2.value,
+                              valorGrupo: controller.selectedValue!.value,
+                              funcao: (value) =>
+                                  controller.pressRadioBtn(value),
+                            ),
+                            Text(
+                              'Mais Dificil',
+                              style: TextStyleCustom.padrao,
+                            ),
                           ],
                         );
                       }),
@@ -146,6 +154,8 @@ class HomePage extends GetResponsiveView<WelcomeController> {
               );
             },
           );
-        }));
+        },
+      ),
+    );
   }
 }

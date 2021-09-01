@@ -6,6 +6,7 @@ import 'package:treinar_app/app/modules/adicionarExercicio/adicionar_controller.
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 import 'package:treinar_app/app/shared/widgets/app_bar_custom/app_bar_custom.dart';
+import 'package:treinar_app/app/shared/widgets/button_custom/buttom_custom.dart';
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class ExerciciosCustomPage extends GetView<AdcionarExerController> {
@@ -57,39 +58,48 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                               padding: EdgeInsets.all(10),
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Excluir exercício',
-                                    style: TextStyleCustom.minimoTitle,
+                                    'Exluir Exercicio: ${item.titulo!.toUpperCase()}',
+                                    style: TextStyleCustom.titleRadio,
                                     textAlign: TextAlign.center,
                                   ),
                                   ListtileCustom(
-                                    color:
-                                        AppColors.primarylight.withOpacity(.5),
+                                    elevation: 0,
+                                    color: AppColors.purpleLightOne,
                                     onCLik: () {
                                       controller.delete(item.id!);
                                       Get.back();
                                     },
-                                    titulo: Text('Sim',
-                                        style: TextStyleCustom.padraoBranco),
+                                    titulo: Text(
+                                      'Sim',
+                                      style: TextStyleCustom.titleRadio,
+                                    ),
                                   ),
                                   ListtileCustom(
-                                    color:
-                                        AppColors.primarylight.withOpacity(.5),
+                                    elevation: 0,
+                                    color: AppColors.purpleLightOne,
                                     onCLik: () => Get.back(),
-                                    titulo: Text('Nao',
-                                        style: TextStyleCustom.padraoBranco),
+                                    titulo: Text(
+                                      'Nao',
+                                      style: TextStyleCustom.titleRadio,
+                                    ),
                                   ),
+                                  ButtomCustom(
+                                    onClik: () => Get.back(),
+                                    widget: Text('Cancelar',
+                                        style: TextStyleCustom.padraoBranco),
+                                  )
                                 ],
                               ),
                             ),
                             backgroundColor: AppColors.purpleLightOne,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10)),
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20)),
                             ),
                           );
                         },
