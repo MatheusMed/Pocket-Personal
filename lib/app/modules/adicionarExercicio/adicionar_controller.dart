@@ -3,11 +3,17 @@ import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:treinar_app/app/repository/database/sql_database.dart';
 import 'package:treinar_app/app/repository/models/exercicios_custom.dart';
+import 'package:treinar_app/app/shared/themes/app_colors.dart';
+import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
+import 'package:treinar_app/app/shared/widgets/button_custom/buttom_custom.dart';
+import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class AdcionarExerController extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   late Database db;
+
+  RxBool lista = false.obs;
 
   RxList<ExerciciosCustom> listExercicios = RxList<ExerciciosCustom>();
 
@@ -20,6 +26,57 @@ class AdcionarExerController extends GetxController {
     if (formValidade) {
       criarNovoExercicio();
     }
+  }
+
+  void showModalDelete(int id) {
+    Get.bottomSheet(
+      Container(
+        height: Get.height * .30,
+        width: Get.width,
+        padding: EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Selecionar',
+              style: TextStyleCustom.titleRadio,
+              textAlign: TextAlign.center,
+            ),
+            ListtileCustom(
+              elevation: 0,
+              color: AppColors.branco,
+              onCLik: () {
+                delete(id);
+                Get.back();
+              },
+              titulo: Text(
+                'Excluir exercicio',
+                style: TextStyleCustom.titleRadio,
+              ),
+            ),
+            ListtileCustom(
+              elevation: 0,
+              color: AppColors.branco,
+              onCLik: () => Get.back(),
+              titulo: Text(
+                'Não excluir exercicio',
+                style: TextStyleCustom.titleRadio,
+              ),
+            ),
+            ButtomCustom(
+              onClik: () => Get.back(),
+              widget: Text('Cancelar', style: TextStyleCustom.padraoBranco),
+            )
+          ],
+        ),
+      ),
+      backgroundColor: AppColors.branco,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+    );
   }
 
   void criarNovoExercicio() {

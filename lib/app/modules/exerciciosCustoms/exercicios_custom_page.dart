@@ -51,57 +51,7 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
                           color: AppColors.branco,
                         ),
                         onLongPress: () {
-                          Get.bottomSheet(
-                            Container(
-                              height: Get.height * .30,
-                              width: Get.width,
-                              padding: EdgeInsets.all(10),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Exluir Exercicio: ${item.titulo!.toUpperCase()}',
-                                    style: TextStyleCustom.titleRadio,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  ListtileCustom(
-                                    elevation: 0,
-                                    color: AppColors.purpleLightOne,
-                                    onCLik: () {
-                                      controller.delete(item.id!);
-                                      Get.back();
-                                    },
-                                    titulo: Text(
-                                      'Sim',
-                                      style: TextStyleCustom.titleRadio,
-                                    ),
-                                  ),
-                                  ListtileCustom(
-                                    elevation: 0,
-                                    color: AppColors.purpleLightOne,
-                                    onCLik: () => Get.back(),
-                                    titulo: Text(
-                                      'Nao',
-                                      style: TextStyleCustom.titleRadio,
-                                    ),
-                                  ),
-                                  ButtomCustom(
-                                    onClik: () => Get.back(),
-                                    widget: Text('Cancelar',
-                                        style: TextStyleCustom.padraoBranco),
-                                  )
-                                ],
-                              ),
-                            ),
-                            backgroundColor: AppColors.purpleLightOne,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)),
-                            ),
-                          );
+                          controller.showModalDelete(item.id!);
                         },
                         onCLik: () => Get.toNamed(
                           '/exerc',

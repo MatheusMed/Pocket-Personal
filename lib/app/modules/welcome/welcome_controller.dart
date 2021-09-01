@@ -263,13 +263,13 @@ class WelcomeController extends GetxController {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Excluir seus Dados?',
+              'Selecionar',
               style: TextStyleCustom.titleRadio,
               textAlign: TextAlign.center,
             ),
             ListtileCustom(
               elevation: 0,
-              color: AppColors.purpleLightOne,
+              color: AppColors.branco,
               onCLik: () async {
                 db = await SqlDatabase.instace.database;
                 await db.delete(
@@ -278,16 +278,16 @@ class WelcomeController extends GetxController {
                 Get.offAllNamed('/splash');
               },
               titulo: Text(
-                'Sim',
+                'Apagar seu dados',
                 style: TextStyleCustom.titleRadio,
               ),
             ),
             ListtileCustom(
               elevation: 0,
-              color: AppColors.purpleLightOne,
+              color: AppColors.branco,
               onCLik: () => Get.back(),
               titulo: Text(
-                'Nao',
+                'Não apagar seu dados',
                 style: TextStyleCustom.titleRadio,
               ),
             ),
@@ -298,7 +298,7 @@ class WelcomeController extends GetxController {
           ],
         ),
       ),
-      backgroundColor: AppColors.purpleLightOne,
+      backgroundColor: AppColors.branco,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20), topRight: Radius.circular(20)),
