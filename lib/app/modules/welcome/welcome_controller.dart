@@ -279,15 +279,6 @@ class WelcomeController extends GetxController {
                 style: TextStyleCustom.titleRadio,
               ),
             ),
-            ListtileCustom(
-              elevation: 0,
-              color: AppColors.branco,
-              onCLik: () => Get.back(),
-              titulo: Text(
-                'Não apagar seu dados',
-                style: TextStyleCustom.titleRadio,
-              ),
-            ),
             ButtomCustom(
               onClik: () => Get.back(),
               widget: Text('Cancelar', style: TextStyleCustom.padraoBranco),
@@ -336,7 +327,7 @@ class WelcomeController extends GetxController {
   @override
   void onReady() {
     selectedValue!.value = box.read('key') ?? 0;
-    valor!.value = box.read('box');
+    valor!.value = box.read('box') ?? false;
     super.onReady();
   }
 }
