@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import 'package:sqflite/sqflite.dart';
 import 'package:treinar_app/app/repository/database/sql_database.dart';
 import 'package:treinar_app/app/repository/models/exercicios_model.dart';
 import 'package:treinar_app/app/repository/models/type_exercicios.dart';
 import 'package:treinar_app/app/repository/models/user_model.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
-
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 import 'package:treinar_app/app/shared/widgets/button_custom/buttom_custom.dart';
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
@@ -338,7 +335,7 @@ class WelcomeController extends GetxController {
 
   @override
   void onReady() {
-    selectedValue!.value = box.read('key');
+    selectedValue!.value = box.read('key') ?? 0;
     valor!.value = box.read('box');
     super.onReady();
   }
