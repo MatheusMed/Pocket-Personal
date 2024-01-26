@@ -1,5 +1,4 @@
 import 'package:community_material_icon/community_material_icon.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/adicionarExercicio/adicionar_controller.dart';
@@ -18,7 +17,6 @@ class AdicionarExercicio extends GetView<AdcionarExerController> {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         toolbarHeight: 0,
-        brightness: Brightness.dark,
         elevation: 0,
       ),
       body: SingleChildScrollView(

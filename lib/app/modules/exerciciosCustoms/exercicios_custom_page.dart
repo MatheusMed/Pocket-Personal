@@ -1,12 +1,10 @@
 import 'package:community_material_icon/community_material_icon.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/adicionarExercicio/adicionar_controller.dart';
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 import 'package:treinar_app/app/shared/widgets/app_bar_custom/app_bar_custom.dart';
-import 'package:treinar_app/app/shared/widgets/button_custom/buttom_custom.dart';
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class ExerciciosCustomPage extends GetView<AdcionarExerController> {
@@ -17,7 +15,6 @@ class ExerciciosCustomPage extends GetView<AdcionarExerController> {
         toolbarHeight: 0,
         backgroundColor: AppColors.primary,
         elevation: 0,
-        brightness: Brightness.dark,
       ),
       body: SizedBox(
         height: Get.height * 1,

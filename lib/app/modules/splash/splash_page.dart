@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/splash/splash_controller.dart';
-
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 
@@ -11,7 +10,6 @@ class SplashPage extends GetResponsiveView<SplashController> {
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 0,
-        brightness: Brightness.dark,
       ),
       body: SingleChildScrollView(
         child: SizedBox(

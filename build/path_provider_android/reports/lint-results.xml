@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.3">
+
+    <issue
+        id="LintError"
+        severity="Error"
+        message="Unknown issue id &quot;AndroidGradlePluginVersion&quot;"
+        category="Lint"
+        priority="10"
+        summary="Lint Failure"
+        explanation="This issue type represents a problem running lint itself. Examples include failure to find bytecode for source files (which means certain detectors could not be run), parsing errors in lint configuration files, etc.&#xA;&#xA;These errors are not errors in your own code, but they are shown to make it clear that some checks were not completed."
+        errorLine1="        disable &apos;AndroidGradlePluginVersion&apos;, &apos;InvalidPackage&apos;, &apos;GradleDependency&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/matheus/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2/android/build.gradle"
+            line="38"
+            column="18"/>
+    </issue>
+
+</issues>

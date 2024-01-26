@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:treinar_app/app/modules/welcome/welcome_controller.dart';
-
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 import 'package:treinar_app/app/shared/widgets/app_bar_custom/app_bar_custom.dart';
-
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class TypeExercicio extends GetResponsiveView<WelcomeController> {
@@ -17,7 +14,6 @@ class TypeExercicio extends GetResponsiveView<WelcomeController> {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         toolbarHeight: 0,
-        brightness: Brightness.dark,
         elevation: 0,
       ),
       body: SingleChildScrollView(

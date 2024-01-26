@@ -1,0 +1,1 @@
+ /Users/matheus/Desktop/Projetos/Pocket-Personal/.dart_tool/flutter_build/3b2223290ac94ad4c7fb6b06ace4395a/native_assets.yaml: 

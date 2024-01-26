@@ -1,4 +1,3 @@
-import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:treinar_app/app/modules/adicionarExercicio/adicionar_exercicio.dart';
@@ -9,7 +8,6 @@ import 'package:treinar_app/app/shared/themes/app_colors.dart';
 import 'package:treinar_app/app/shared/themes/text_style_custom.dart';
 import 'package:treinar_app/app/shared/widgets/RadioButtonWidget/radio_button_widget.dart';
 import 'package:treinar_app/app/shared/widgets/app_bar_custom/app_bar_custom.dart';
-import 'package:treinar_app/app/shared/widgets/dividerListTile/divider_list_tile.dart';
 import 'package:treinar_app/app/shared/widgets/listTile_custom/listTile_custom.dart';
 
 class HomePage extends GetResponsiveView<WelcomeController> {
@@ -19,7 +17,6 @@ class HomePage extends GetResponsiveView<WelcomeController> {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         toolbarHeight: 0,
-        brightness: Brightness.dark,
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
@@ -34,6 +31,7 @@ class HomePage extends GetResponsiveView<WelcomeController> {
       body: Obx(
         () {
           return ListView.builder(
+            shrinkWrap: true,
             itemCount: controller.listUser.length,
             itemBuilder: (contx, i) {
               UserModel user = controller.listUser[i];
@@ -63,7 +61,7 @@ class HomePage extends GetResponsiveView<WelcomeController> {
                       ),
                       Obx(() {
                         return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             RadioButtonWidget(
                                 valor: controller.numberValue0.value,

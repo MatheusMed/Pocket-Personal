@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:treinar_app/app/shared/themes/app_colors.dart';
 
+// ignore: must_be_immutable
 class ListtileCustom extends StatelessWidget {
   final Widget? titulo;
   final void Function()? onCLik;

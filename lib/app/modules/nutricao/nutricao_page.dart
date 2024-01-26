@@ -16,7 +16,6 @@ class NutricaoPage extends StatelessWidget {
         toolbarHeight: 0,
         backgroundColor: AppColors.primary,
         elevation: 0,
-        brightness: Brightness.dark,
       ),
       body: SizedBox(
         height: Get.height * 1,
